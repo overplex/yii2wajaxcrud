@@ -6,7 +6,7 @@
  * Time: 下午4:28
  */
 
-namespace wodrow\wajaxcrud\generators\model;
+namespace overplex\wajaxcrud\generators\model;
 
 
 use yii\gii\CodeFile;

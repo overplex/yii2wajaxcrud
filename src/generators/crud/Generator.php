@@ -1,5 +1,5 @@
 <?php
-namespace wodrow\wajaxcrud\generators\crud;
+namespace overplex\wajaxcrud\generators\crud;
 
 use wodrow\yii2wtools\tools\FileHelper;
 use Yii;

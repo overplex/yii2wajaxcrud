@@ -1,5 +1,5 @@
 <?php
-namespace wodrow\wajaxcrud;
+namespace overplex\wajaxcrud;
 
 use yii\base\Widget;
 use yii\helpers\Html;

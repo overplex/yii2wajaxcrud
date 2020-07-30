@@ -1,6 +1,6 @@
 <?php 
 
-namespace wodrow\wajaxcrud;
+namespace overplex\wajaxcrud;
 
 use yii\web\AssetBundle;
 

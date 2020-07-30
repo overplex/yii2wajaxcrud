@@ -6,7 +6,7 @@
  * Time: 14:24
  */
 
-namespace wodrow\wajaxcrud\rangecolumn;
+namespace overplex\wajaxcrud\rangecolumn;
 
 
 use kartik\base\Widget;

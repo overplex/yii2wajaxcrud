@@ -6,7 +6,7 @@
  * Time: 10:27
  */
 
-namespace wodrow\wajaxcrud\rangecolumn;
+namespace overplex\wajaxcrud\rangecolumn;
 
 
 use kartik\grid\DataColumn;
