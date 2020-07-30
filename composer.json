@@ -1,5 +1,5 @@
 {
-  "name": "wodrow/yii2wajaxcrud",
+  "name": "overplex/yii2wajaxcrud",
   "description": "Gii CRUD template for Single Page Ajax Administration for yii2",
   "type": "yii2-extension",
   "keywords": [
@@ -14,14 +14,14 @@
   "license": "Apache-2.0",
   "authors": [
     {
-      "name": "wodrow",
-      "email": "wodrow451611cv@gmail.com",
-      "homepage": "https://github.com/wodrow?tab=repositories"
+      "name": "overplex",
+      "email": "vl.haritonov@gmail.com",
+      "homepage": "https://github.com/overplex?tab=repositories"
     }
   ],
   "support": {
-    "issues": "https://github.com/wodrow/yii2wajaxcrud/issues?state=open",
-    "source": "https://github.com/wodrow/yii2wajaxcrud"
+    "issues": "https://github.com/overplex/yii2wajaxcrud/issues?state=open",
+    "source": "https://github.com/overplex/yii2wajaxcrud"
   },
   "require": {
     "php": ">=7.1",
@@ -39,10 +39,10 @@
   },
   "autoload": {
     "psr-4": {
-      "wodrow\\wajaxcrud\\": "src/"
+      "overplex\\wajaxcrud\\": "src/"
     }
   },
   "extra": {
-    "bootstrap": "wodrow\\wajaxcrud\\Bootstrap"
+    "bootstrap": "overplex\\wajaxcrud\\Bootstrap"
   }
 }

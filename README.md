@@ -1,12 +1,7 @@
 yii2wajaxcrud 
 =============
 
-[![Latest Stable Version](https://poser.pugx.org/wodrow/yii2wajaxcrud/v/stable)](https://packagist.org/packages/wodrow/yii2wajaxcrud)
-[![License](https://poser.pugx.org/wodrow/yii2wajaxcrud/license)](https://packagist.org/packages/wodrow/yii2wajaxcrud)
-[![Total Downloads](https://poser.pugx.org/wodrow/yii2wajaxcrud/downloads)](https://packagist.org/packages/wodrow/yii2wajaxcrud)
-
 Gii CRUD template for Single Page Ajax Administration for yii2 
-
 
 Features
 ------------
@@ -16,6 +11,7 @@ Features
 + Export function(pdf,html,text,csv,excel,json)
 + Editable suport
 + Daterange suport
++ Internationalization
 
 Installation
 ------------
@@ -25,17 +21,17 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist wodrow/yii2wajaxcrud "^2.1"
+php composer.phar require --prefer-dist overplex/yii2wajaxcrud "^2.1"
 or
-php composer.phar require --prefer-dist wodrow/yii2wajaxcrud "^3.0"
+php composer.phar require --prefer-dist overplex/yii2wajaxcrud "^3.0"
 ```
 
 or add
 
 ```
-"wodrow/yii2wajaxcrud": "^2.1"
+"overplex/yii2wajaxcrud": "^2.1"
 or
-"wodrow/yii2wajaxcrud": "^3.0"
+"overplex/yii2wajaxcrud": "^3.0"
 ```
 
 to the require section of your `composer.json` file.
@@ -63,12 +59,12 @@ $config['modules']['gii'] = [
     'class' => 'yii\gii\Module',
 ];
 $config['modules']['gii']['generators']['wodrowmodel'] = [
-    'class' => \wodrow\wajaxcrud\generators\model\Generator::class,
-    'showName' => "YOUR MODEL GENERATOR",
+    'class' => \overplex\wajaxcrud\generators\model\Generator::class,
+    'showName' => "Model Generator 2",
 ];
 $config['modules']['gii']['generators']['wodrowwajaxcrud'] = [
-    'class' => \wodrow\wajaxcrud\generators\crud\Generator::class,
-    'showName' => "YOUR AJAX CRUD GENERATOR",
+    'class' => \overplex\wajaxcrud\generators\crud\Generator::class,
+    'showName' => "Ajax CRUD Generator 2",
 ];
 ````
 
