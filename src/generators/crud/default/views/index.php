@@ -2,13 +2,9 @@
 
 use yii\helpers\Inflector;
 use yii\helpers\StringHelper;
-use yii\bootstrap\Modal;
-use yii\helpers\Url;
-use yii\helpers\Html;
-
 
 /* @var $this yii\web\View */
-/* @var $generator \wodrow\wajaxcrud\generators\crud\Generator */
+/* @var $generator \overplex\wajaxcrud\generators\crud\Generator */
 $modelClass = StringHelper::basename($generator->formModelClass);
 $urlParams = $generator->generateUrlParams();
 $nameAttribute = $generator->getNameAttribute();
@@ -41,7 +37,7 @@ use kartik\daterange\DateRangePicker;
 use wodrow\wajaxcrud\rangecolumn\RangeColumn;
 use yii\helpers\Url;
 use yii\helpers\Html;
-use yii\bootstrap\Modal;
+use yii\bootstrap4\Modal;
 use wodrow\wajaxcrud\CrudAsset;
 use wodrow\wajaxcrud\BulkButtonWidget;
 use wodrow\yii2wtools\tools\JsBlock;
