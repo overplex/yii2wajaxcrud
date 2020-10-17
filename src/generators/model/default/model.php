@@ -45,8 +45,8 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->extendModelClass, '
     public function getStatusDesc()
     {
         return [
-            self::STATUS_DELETE => "已删除",
-            self::STATUS_ACTIVE => "正常",
+            self::STATUS_DELETE => "Deleted",
+            self::STATUS_ACTIVE => "Active",
         ];
     }
 

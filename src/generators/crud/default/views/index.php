@@ -102,7 +102,7 @@ CrudAsset::register($this);
                     },
                     'editableOptions' => function ($model, $key, $index, $widget) {
                         return [
-                            'header' => "修改",
+                            'header' => "Update",
                             'size' => "md",
                             'formOptions' => ['action' => ['editable-edit']],
                         ];
@@ -129,12 +129,12 @@ CrudAsset::register($this);
                             'timePickerIncrement' => 1,
                             'locale' => [
                                 'format' => "Y-m-d H:i:s",
-                                'applyLabel' => "确认",
-                                'cancelLabel' => "清除",
-                                'fromLabel' => "开始时间",
-                                'toLabel' => "结束时间",
-                                'daysOfWeek' => ["日","一","二","三","四","五","六"],
-                                'monthNames' => ["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"],
+                                'applyLabel' => "Confirm",
+                                'cancelLabel' => "Clear",
+                                'fromLabel' => "Start time",
+                                'toLabel' => "End time",
+                                'daysOfWeek' => ["day","one","two","three","four","five","six"],
+                                'monthNames' => ["January","February","March","April","May","June","July","August","September" ,"October","November","December"],
                             ],
                         ],
                         'presetDropdown' => true,
@@ -161,7 +161,7 @@ CrudAsset::register($this);
                     'enableSorting' => false,
                     'format' => 'raw',
                     'value' => function ($m) {
-                        return $m-><?=$name ?>?Html::a(Html::img($m-><?=$name ?>, ['alt' => '缩略图', 'width' => 120]), $m-><?=$name ?>):'';
+                        return $m-><?=$name ?>?Html::a(Html::img($m-><?=$name ?>, ['alt' => 'Thumbnail', 'width' => 120]), $m-><?=$name ?>):'';
                     },
                 ],
                 <?php elseif ($name == $statusField): ?>[
@@ -189,18 +189,19 @@ CrudAsset::register($this);
                     'updateOptions' => ['role' => 'modal-remote', 'title' => "Update", 'data-toggle' => "tooltip"],
                     'deleteOptions' => [
                         'role' => 'modal-remote',
-                        'title' => "删除",
+                        'title' => "Delete",
                         'data-confirm' => false,
                         'data-method' => false, // for overide yii data api
                         'data-request-method' => "post",
                         'data-toggle' => "tooltip",
-                        'data-confirm-title' => "删除数据提示!",
-                        'data-confirm-message' => "你确认要删除本条数据吗?",
+                        'data-confirm-
+                        title' => "Delete data reminder!",
+                        'data-confirm-message' => "Are you sure you want to delete this piece of data?",
                     ],
                 ],
                 [
                     'class' => ActionColumn::class,
-                    'header' => '其他操作',
+                    'header' => 'Actions',
                     'template' => '{test}',
                     'mergeHeader' => true,
                     'buttons' => [
@@ -220,7 +221,7 @@ CrudAsset::register($this);
             'toolbar' => [
                 ['content' =>
                     Html::a('<i class="glyphicon glyphicon-plus"></i>', ['create'],
-                    ['role' => "modal-remote", 'title' => "新建 <?= Inflector::pluralize(Inflector::camel2words(StringHelper::basename($generator->modelClass))) ?>", 'class' => "btn btn-default"]).
+                    ['role' => "modal-remote", 'title' => "New <?= Inflector::pluralize(Inflector::camel2words(StringHelper::basename($generator->modelClass))) ?>", 'class' => "btn btn-default"]).
                     Html::a('<i class="glyphicon glyphicon-repeat"></i>', [''],
                     ['data-pjax' => 1, 'class' => "btn btn-default", 'title' => "Reset Grid"]).
                     '{toggleData}'.
@@ -229,24 +230,28 @@ CrudAsset::register($this);
             ],
             'panel' => [
                 'type' => "primary", 
-                'heading' => "<i class=\"glyphicon glyphicon-list\"></i> <?= Inflector::pluralize(Inflector::camel2words(StringHelper::basename($generator->modelClass))) ?> 列表",
-                'before' => "<em>* 你可以拖动改变单列的宽度；筛选框输入<code>" . \Yii::t('yii', '(not set)'). "</code>会只搜索值为空的数据；筛选框输入<code>" . $searchModel::EMPTY_STRING . "</code>会只搜索值为空字符的数据；筛选框输入<code>" . $searchModel::NO_EMPTY . "</code>会只搜索非空数据。</em>",
+                'heading' => "<i class=\"glyphicon glyphicon-list\"></i> <?= Inflector::pluralize(Inflector::camel2words(StringHelper::basename($generator->modelClass))) ?> List",
+                'before' => "<em>* You can drag to change the width of a single column; enter the filter box<code>"
+                    . \Yii::t('yii', '(not set)'). "</code>Only data with empty values will be searched; input in the filter box<code>"
+                . $searchModel::EMPTY_STRING . "</code>Will only search for data whose value is a null character; input in the filter box<code>"
+                . $searchModel::NO_EMPTY . "</code>Only non-empty data will be searched.</em>",
                 'after' => BulkButtonWidget::widget([
-                    'buttons' => Html::a('<i class="glyphicon glyphicon-trash"></i> 删除选择', ["bulkdelete", 'type' => "soft"], [
+                        'buttons' => Html::a('<i class="glyphicon glyphicon-trash"></i> Delete selection', ["bulkdelete", 'type' => "soft"], [
                         "class" => "btn btn-danger btn-xs",
                         'role' => "modal-remote-bulk",
                         'data-confirm' => false, 'data-method' => false,// for overide yii data api
                         'data-request-method' => "post",
-                        'data-confirm-title' => "删除数据提示!",
-                        'data-confirm-message' => "你确认要删除这些数据吗?"
+                        'data-confirm-title' => "Delete data prompt!",
+                        'data-confirm-message' => "Are you sure you want to delete this data?"
                     ])." ".
-                    Html::a('<i class="glyphicon glyphicon-wrench"></i> test选择', ["bulktest"], [
-                        "class" => "btn btn-warning btn-xs",
+                    Html::a('<i class="glyphicon glyphicon-wrench"></i> test selection', ["bulktest"], [
+                        "class" => "btn btn-
+                        warning btn-xs",
                         'role' => "modal-remote-bulk",
-                        'data-confirm' => false, 'data-method' => false,
+                        'data-confirm' => false,'data-method' => false,
                         'data-request-method' => "post",
-                        'data-confirm-title' => "test数据提示!",
-                        'data-confirm-message' => "你确认要test这些数据吗?"
+                        'data-confirm-title' => "test data prompt!",
+                        'data-confirm-message' => "Are you sure you want to test these data?"
                     ]),
                 ]).
                 '<div class="clearfix"></div>',

@@ -130,8 +130,8 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
                     'content' => $this->renderAjax('view', [
                         'model' => $this->findModel(<?= $actionParams ?>),
                     ]),
-                    'footer' => Html::button('关闭', ['class' => 'btn btn-default pull-left','data-dismiss' => "modal"]).
-                            Html::a('编辑', ['update','<?= substr($actionParams,1) ?>' => <?= $actionParams ?>], ['class' => 'btn btn-primary','role' => 'modal-remote'])
+                    'footer' => Html::button('Close', ['class' => 'btn btn-default pull-left','data-dismiss' => "modal"]).
+                            Html::a('Update', ['update','<?= substr($actionParams,1) ?>' => <?= $actionParams ?>], ['class' => 'btn btn-primary','role' => 'modal-remote'])
                 ];    
         }else{
             return $this->render('view', [
@@ -155,12 +155,12 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title' => "新建 <?= isset($formModelAlias)?$formModelAlias:$formModelClass ?>",
+                    'title' => "New <?= isset($formModelAlias)?$formModelAlias:$formModelClass ?>",
                     'content' => $this->renderAjax('create', [
                         'model' => $model,
                     ]),
-                    'footer' => Html::button('关闭', ['class' => 'btn btn-default pull-left','data-dismiss' => "modal"]).
-                                Html::button('保存', ['class' => 'btn btn-primary','type' => "submit"])
+                    'footer' => Html::button('Close', ['class' => 'btn btn-default pull-left','data-dismiss' => "modal"]).
+                                Html::button('Save', ['class' => 'btn btn-primary','type' => "submit"])
         
                 ];         
             }else if($model->load($request->post()) && $model->save()){
@@ -168,18 +168,18 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
                     'forceReload' => '#crud-datatable-pjax',
                     'title' => "Create new <?= isset($formModelAlias)?$formModelAlias:$formModelClass ?>",
                     'content' => '<span class="text-success">Create <?= isset($formModelAlias)?$formModelAlias:$formModelClass ?> success</span>',
-                    'footer' => Html::button('关闭', ['class' => 'btn btn-default pull-left','data-dismiss' => "modal"]).
-                            Html::a('新建更多', ['create'], ['class' => 'btn btn-primary','role' => 'modal-remote'])
+                    'footer' => Html::button('Close', ['class' => 'btn btn-default pull-left','data-dismiss' => "modal"]).
+                            Html::a('Create', ['create'], ['class' => 'btn btn-primary','role' => 'modal-remote'])
         
                 ];         
             }else{           
                 return [
-                    'title' => "新建 <?= isset($formModelAlias)?$formModelAlias:$formModelClass ?>",
+                    'title' => "New <?= isset($formModelAlias)?$formModelAlias:$formModelClass ?>",
                     'content' => $this->renderAjax('create', [
                         'model' => $model,
                     ]),
-                    'footer' => Html::button('关闭', ['class' => 'btn btn-default pull-left','data-dismiss' => "modal"]).
-                                Html::button('保存', ['class' => 'btn btn-primary','type' => "submit"])
+                    'footer' => Html::button('Close', ['class' => 'btn btn-default pull-left','data-dismiss' => "modal"]).
+                                Html::button('Save', ['class' => 'btn btn-primary','type' => "submit"])
         
                 ];         
             }
@@ -213,12 +213,12 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title' => "修改 <?= isset($formModelAlias)?$formModelAlias:$formModelClass ?>({<?= $actionParams ?>})",
+                    'title' => "Changing <?= isset($formModelAlias)?$formModelAlias:$formModelClass ?>({<?= $actionParams ?>})",
                     'content' => $this->renderAjax('update', [
                         'model' => $model,
                     ]),
-                    'footer' => Html::button('关闭', ['class' => 'btn btn-default pull-left','data-dismiss' => "modal"]).
-                                Html::button('保存', ['class' => 'btn btn-primary','type' => "submit"])
+                    'footer' => Html::button('Close', ['class' => 'btn btn-default pull-left','data-dismiss' => "modal"]).
+                                Html::button('Save', ['class' => 'btn btn-primary','type' => "submit"])
                 ];         
             }else if($model->load($request->post()) && $model->save()){
                 return [
@@ -227,17 +227,17 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
                     'content' => $this->renderAjax('view', [
                         'model' => $model,
                     ]),
-                    'footer' => Html::button('关闭', ['class' => 'btn btn-default pull-left','data-dismiss' => "modal"]).
-                            Html::a('编辑', ['update','<?= substr($actionParams,1) ?>' => <?= $actionParams ?>], ['class' => 'btn btn-primary','role' => 'modal-remote'])
+                    'footer' => Html::button('Close', ['class' => 'btn btn-default pull-left','data-dismiss' => "modal"]).
+                            Html::a('Update', ['update','<?= substr($actionParams,1) ?>' => <?= $actionParams ?>], ['class' => 'btn btn-primary','role' => 'modal-remote'])
                 ];    
             }else{
                  return [
-                    'title' => "修改 <?= isset($formModelAlias)?$formModelAlias:$formModelClass ?> #".<?= $actionParams ?>,
+                    'title' => "Changing <?= isset($formModelAlias)?$formModelAlias:$formModelClass ?> #".<?= $actionParams ?>,
                     'content' => $this->renderAjax('update', [
                         'model' => $model,
                     ]),
-                    'footer' => Html::button('关闭', ['class' => 'btn btn-default pull-left','data-dismiss' => "modal"]).
-                                Html::button('保存', ['class' => 'btn btn-primary','type' => "submit"])
+                    'footer' => Html::button('Close', ['class' => 'btn btn-default pull-left','data-dismiss' => "modal"]).
+                                Html::button('Save', ['class' => 'btn btn-primary','type' => "submit"])
                 ];        
             }
         }else{
@@ -333,11 +333,11 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
                     'model' => $model,
                 ]),
                 'footer' =>
-                    Html::button('关闭', ['class' => 'btn btn-default pull-left','data-dismiss' => "modal"]).
+                    Html::button('Close', ['class' => 'btn btn-default pull-left','data-dismiss' => "modal"]).
                     Html::button('test', ['class' => 'btn btn-primary', 'type' => "submit"]),
                 ];
             }elseif($model->load($request->post()) && $model->validate()){
-                # TO DO test
+                # TODO test
                 return ['forceClose' => true,'forceReload' => '#crud-datatable-pjax'];
             }else{
                 return [
@@ -346,7 +346,7 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
                     'model' => $model,
                 ]),
                 'footer' =>
-                    Html::button('关闭', ['class' => 'btn btn-default pull-left','data-dismiss' => "modal"]).
+                    Html::button('Close', ['class' => 'btn btn-default pull-left','data-dismiss' => "modal"]).
                     Html::button('test', ['class' => 'btn btn-primary', 'type' => "submit"]),
                 ];
             }

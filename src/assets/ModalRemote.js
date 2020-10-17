@@ -4,8 +4,8 @@
  * Use for johnitvn/yii2-ajaxcrud extension
  * @author John Martin john.itvn@gmail.com
  */
-(function($) {
-    $.fn.hasAttr = function(name) {
+(function ($) {
+    $.fn.hasAttr = function (name) {
         return this.attr(name) !== undefined;
     };
 }(jQuery));
@@ -32,7 +32,7 @@ function ModalRemote(modalId) {
     /**
      * Show the modal
      */
-    this.show = function() {
+    this.show = function () {
         this.clear();
         $(this.modal).modal('show');
     };
@@ -40,21 +40,21 @@ function ModalRemote(modalId) {
     /**
      * Hide the modal
      */
-    this.hide = function() {
+    this.hide = function () {
         $(this.modal).modal('hide');
     };
 
     /**
      * Toogle show/hide modal
      */
-    this.toggle = function() {
+    this.toggle = function () {
         $(this.modal).modal('toggle');
     };
 
     /**
      * Clear modal
      */
-    this.clear = function() {
+    this.clear = function () {
         $(this.modal).find('.modal-title').remove();
         $(this.content).html('');
         $(this.footer).html('');
@@ -64,15 +64,13 @@ function ModalRemote(modalId) {
      * Set size of modal
      * @param {string} size large/normal/small
      */
-    this.setSize = function(size) {
+    this.setSize = function (size) {
         $(this.dialog).removeClass('modal-lg');
         $(this.dialog).removeClass('modal-sm');
         if (size == 'large') {
-            $(this.dialog).
-                addClass('modal-lg');
+            $(this.dialog).addClass('modal-lg');
         } else if (size == 'small') {
-            $(this.dialog).
-                addClass('modal-sm');
+            $(this.dialog).addClass('modal-sm');
         } else if (size !== 'normal') {
             console.warn('Undefined size ' + size);
         }
@@ -82,7 +80,7 @@ function ModalRemote(modalId) {
      * Set modal header
      * @param {string} content The content of modal header
      */
-    this.setHeader = function(content) {
+    this.setHeader = function (content) {
         $(this.header).html(content);
     };
 
@@ -90,7 +88,7 @@ function ModalRemote(modalId) {
      * Set modal content
      * @param {string} content The content of modal content
      */
-    this.setContent = function(content) {
+    this.setContent = function (content) {
         $(this.content).html(content);
     };
 
@@ -98,7 +96,7 @@ function ModalRemote(modalId) {
      * Set modal footer
      * @param {string} content The content of modal footer
      */
-    this.setFooter = function(content) {
+    this.setFooter = function (content) {
         $(this.footer).html(content);
     };
 
@@ -106,7 +104,7 @@ function ModalRemote(modalId) {
      * Set modal footer
      * @param {string} title The title of modal
      */
-    this.setTitle = function(title) {
+    this.setTitle = function (title) {
         // remove old title
         $(this.header).find('h4.modal-title').remove();
         // add new title
@@ -116,21 +114,21 @@ function ModalRemote(modalId) {
     /**
      * Hide close button
      */
-    this.hidenCloseButton = function() {
+    this.hidenCloseButton = function () {
         $(this.header).find('button.close').hide();
     };
 
     /**
      * Show close button
      */
-    this.showCloseButton = function() {
+    this.showCloseButton = function () {
         $(this.header).find('button.close').show();
     };
 
     /**
      * Show loading state in modal
      */
-    this.displayLoading = function() {
+    this.displayLoading = function () {
         this.setContent(this.loadingContent);
         this.setTitle(this.defaults.loadingTitle);
     };
@@ -141,7 +139,7 @@ function ModalRemote(modalId) {
      * @param string classes The class of button
      * @param callable callback the callback when button click
      */
-    this.addFooterButton = function(label, type, classes, callback) {
+    this.addFooterButton = function (label, type, classes, callback) {
         buttonElm = document.createElement('button');
         buttonElm.setAttribute('type', type === null ? 'button' : type);
         buttonElm.setAttribute('class',
@@ -150,7 +148,7 @@ function ModalRemote(modalId) {
         var instance = this;
         $(this.footer).append(buttonElm);
         if (callback !== null) {
-            $(buttonElm).click(function(event) {
+            $(buttonElm).click(function (event) {
                 callback.call(instance, this, event);
             });
         }
@@ -162,15 +160,15 @@ function ModalRemote(modalId) {
      * @param {string} method The method of request
      * @param {object}data of request
      */
-    this.doRemote = function(url, method, data) {
+    this.doRemote = function (url, method, data) {
         var instance = this;
         $.ajax({
             url: url, method: method, data: data, async: false,
-            beforeSend: function() {
+            beforeSend: function () {
                 beforeRemoteRequest.call(instance);
-            }, error: function(response) {
+            }, error: function (response) {
                 errorRemoteResponse.call(instance, response);
-            }, success: function(response) {
+            }, success: function (response) {
                 successRemoteResponse.call(instance, response);
             }, contentType: false, cache: false, processData: false,
         });
@@ -194,7 +192,7 @@ function ModalRemote(modalId) {
         this.setTitle(response.status + response.statusText);
         this.setContent(response.responseText);
         this.addFooterButton(yii.t('app', 'Close'), 'button', 'btn btn-default',
-            function(button, event) {
+            function (button, event) {
                 this.hide();
             });
     }
@@ -248,7 +246,7 @@ function ModalRemote(modalId) {
      * @param {string} modalForm
      * @param {object} modalFormSubmitBtn
      */
-    this.setupFormSubmit = function(modalForm, modalFormSubmitBtn) {
+    this.setupFormSubmit = function (modalForm, modalFormSubmitBtn) {
 
         if (modalFormSubmitBtn === undefined) {
             // If submit button not found throw warning message
@@ -257,7 +255,7 @@ function ModalRemote(modalId) {
             var instance = this;
 
             // Submit form when user clicks submit button
-            $(modalFormSubmitBtn).click(function(e) {
+            $(modalFormSubmitBtn).click(function (e) {
                 var data;
 
                 // Test if browser supports FormData which handles uploads
@@ -287,8 +285,8 @@ function ModalRemote(modalId) {
      * @param {string} dataRequestMethod POST or GET
      * @param {number[]} selectedIds
      */
-    this.confirmModal = function(title, message, okLabel, cancelLabel, size,
-                                 dataUrl, dataRequestMethod, selectedIds) {
+    this.confirmModal = function (title, message, okLabel, cancelLabel, size,
+                                  dataUrl, dataRequestMethod, selectedIds) {
         this.show();
         this.setSize(size);
 
@@ -302,7 +300,7 @@ function ModalRemote(modalId) {
         if (okLabel !== false) {
             this.addFooterButton(
                 okLabel === undefined ? this.defaults.okLabel : okLabel,
-                'submit', 'btn btn-primary', function(e) {
+                'submit', 'btn btn-primary', function (e) {
                     var data;
 
                     // Test if browser supports FormData which handles uploads
@@ -326,7 +324,7 @@ function ModalRemote(modalId) {
 
         this.addFooterButton(
             cancelLabel === undefined ? this.defaults.cancelLabel : cancelLabel,
-            'button', 'btn btn-default pull-left', function(e) {
+            'button', 'btn btn-default pull-left', function (e) {
                 this.hide();
             });
 
@@ -351,7 +349,7 @@ function ModalRemote(modalId) {
      *   - footer                (string/html footer of modal box)
      * @params {elm}
      */
-    this.open = function(elm, bulkData) {
+    this.open = function (elm, bulkData) {
         /**
          * Show either a local confirm modal or get modal content through ajax
          */
@@ -359,19 +357,13 @@ function ModalRemote(modalId) {
             $(elm).hasAttr('data-confirm-message')) {
             this.confirmModal($(elm).attr('data-confirm-title'),
                 $(elm).attr('data-confirm-message'),
-                $(elm).attr('data-confirm-alert') ? false : $(elm).
-                    attr('data-confirm-ok'), $(elm).attr('data-confirm-cancel'),
-                $(elm).hasAttr('data-modal-size') ? $(elm).
-                    attr('data-modal-size') : 'normal',
-                $(elm).hasAttr('href') ? $(elm).attr('href') : $(elm).
-                    attr('data-url'),
-                $(elm).hasAttr('data-request-method') ? $(elm).
-                    attr('data-request-method') : 'GET', bulkData);
+                $(elm).attr('data-confirm-alert') ? false : $(elm).attr('data-confirm-ok'), $(elm).attr('data-confirm-cancel'),
+                $(elm).hasAttr('data-modal-size') ? $(elm).attr('data-modal-size') : 'normal',
+                $(elm).hasAttr('href') ? $(elm).attr('href') : $(elm).attr('data-url'),
+                $(elm).hasAttr('data-request-method') ? $(elm).attr('data-request-method') : 'GET', bulkData);
         } else {
-            this.doRemote($(elm).hasAttr('href') ? $(elm).attr('href') : $(elm).
-                    attr('data-url'),
-                $(elm).hasAttr('data-request-method') ? $(elm).
-                    attr('data-request-method') : 'GET', bulkData);
+            this.doRemote($(elm).hasAttr('href') ? $(elm).attr('href') : $(elm).attr('data-url'),
+                $(elm).hasAttr('data-request-method') ? $(elm).attr('data-request-method') : 'GET', bulkData);
         }
     };
 } // End of Object

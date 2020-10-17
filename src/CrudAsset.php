@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace overplex\wajaxcrud;
 
@@ -22,8 +22,8 @@ class CrudAsset extends AssetBundle
     ];
 
     public $js = [
-        YII_ENV_DEV?'ModalRemote.js':'ModalRemote.min.js',
-        YII_ENV_DEV?'ajaxcrud.js':'ajaxcrud.min.js',
+        YII_ENV_DEV ? 'ModalRemote.js' : 'ModalRemote.min.js',
+        YII_ENV_DEV ? 'ajaxcrud.js' : 'ajaxcrud.min.js',
         'baguetteBox.min.js',
     ];
 

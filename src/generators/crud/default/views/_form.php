@@ -34,7 +34,7 @@ use kartik\form\ActiveForm;
 } ?>  
 	<?='<?php if (!Yii::$app->request->isAjax){ ?>'."\n"?>
 	  	<div class="form-group">
-	        <?= "<?= " ?>Html::submitButton($model->isNewRecord ? <?= $generator->generateString('新建') ?> : <?= $generator->generateString('更新') ?>, ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+	        <?= "<?= " ?>Html::submitButton($model->isNewRecord ? <?= $generator->generateString('New') ?> : <?= $generator->generateString('更新') ?>, ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
 	    </div>
 	<?="<?php } ?>\n"?>
 
