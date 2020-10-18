@@ -67,9 +67,9 @@ function ModalRemote(modalId) {
     this.setSize = function (size) {
         $(this.dialog).removeClass('modal-lg');
         $(this.dialog).removeClass('modal-sm');
-        if (size == 'large') {
+        if (size === 'large') {
             $(this.dialog).addClass('modal-lg');
-        } else if (size == 'small') {
+        } else if (size === 'small') {
             $(this.dialog).addClass('modal-sm');
         } else if (size !== 'normal') {
             console.warn('Undefined size ' + size);
@@ -108,7 +108,7 @@ function ModalRemote(modalId) {
         // remove old title
         $(this.header).find('h4.modal-title').remove();
         // add new title
-        $(this.header).append('<h4 class="modal-title">' + title + '</h4>');
+        $(this.header).prepend('<h4 class="modal-title">' + title + '</h4>');
     };
 
     /**
@@ -191,7 +191,7 @@ function ModalRemote(modalId) {
     function errorRemoteResponse(response) {
         this.setTitle(response.status + response.statusText);
         this.setContent(response.responseText);
-        this.addFooterButton(yii.t('app', 'Close'), 'button', 'btn btn-default',
+        this.addFooterButton(yii.t('app', 'Close'), 'button', 'btn btn-secondary',
             function (button, event) {
                 this.hide();
             });
@@ -324,7 +324,7 @@ function ModalRemote(modalId) {
 
         this.addFooterButton(
             cancelLabel === undefined ? this.defaults.cancelLabel : cancelLabel,
-            'button', 'btn btn-default pull-left', function (e) {
+            'button', 'btn btn-secondary pull-left', function (e) {
                 this.hide();
             });
 

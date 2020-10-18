@@ -130,7 +130,7 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
                     'content' => $this->renderAjax('view', [
                         'model' => $this->findModel(<?= $actionParams ?>),
                     ]),
-                    'footer' => Html::button('Close', ['class' => 'btn btn-default pull-left','data-dismiss' => "modal"]).
+                    'footer' => Html::button('Close', ['class' => 'btn btn-secondary pull-left','data-dismiss' => "modal"]).
                             Html::a('Update', ['update','<?= substr($actionParams,1) ?>' => <?= $actionParams ?>], ['class' => 'btn btn-primary','role' => 'modal-remote'])
                 ];    
         }else{
@@ -159,7 +159,7 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
                     'content' => $this->renderAjax('create', [
                         'model' => $model,
                     ]),
-                    'footer' => Html::button('Close', ['class' => 'btn btn-default pull-left','data-dismiss' => "modal"]).
+                    'footer' => Html::button('Close', ['class' => 'btn btn-secondary pull-left','data-dismiss' => "modal"]).
                                 Html::button('Save', ['class' => 'btn btn-primary','type' => "submit"])
         
                 ];         
@@ -168,7 +168,7 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
                     'forceReload' => '#crud-datatable-pjax',
                     'title' => "Create new <?= isset($formModelAlias)?$formModelAlias:$formModelClass ?>",
                     'content' => '<span class="text-success">Create <?= isset($formModelAlias)?$formModelAlias:$formModelClass ?> success</span>',
-                    'footer' => Html::button('Close', ['class' => 'btn btn-default pull-left','data-dismiss' => "modal"]).
+                    'footer' => Html::button('Close', ['class' => 'btn btn-secondary pull-left','data-dismiss' => "modal"]).
                             Html::a('Create', ['create'], ['class' => 'btn btn-primary','role' => 'modal-remote'])
         
                 ];         
@@ -178,7 +178,7 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
                     'content' => $this->renderAjax('create', [
                         'model' => $model,
                     ]),
-                    'footer' => Html::button('Close', ['class' => 'btn btn-default pull-left','data-dismiss' => "modal"]).
+                    'footer' => Html::button('Close', ['class' => 'btn btn-secondary pull-left','data-dismiss' => "modal"]).
                                 Html::button('Save', ['class' => 'btn btn-primary','type' => "submit"])
         
                 ];         
@@ -217,7 +217,7 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
                     'content' => $this->renderAjax('update', [
                         'model' => $model,
                     ]),
-                    'footer' => Html::button('Close', ['class' => 'btn btn-default pull-left','data-dismiss' => "modal"]).
+                    'footer' => Html::button('Close', ['class' => 'btn btn-secondary pull-left','data-dismiss' => "modal"]).
                                 Html::button('Save', ['class' => 'btn btn-primary','type' => "submit"])
                 ];         
             }else if($model->load($request->post()) && $model->save()){
@@ -227,7 +227,7 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
                     'content' => $this->renderAjax('view', [
                         'model' => $model,
                     ]),
-                    'footer' => Html::button('Close', ['class' => 'btn btn-default pull-left','data-dismiss' => "modal"]).
+                    'footer' => Html::button('Close', ['class' => 'btn btn-secondary pull-left','data-dismiss' => "modal"]).
                             Html::a('Update', ['update','<?= substr($actionParams,1) ?>' => <?= $actionParams ?>], ['class' => 'btn btn-primary','role' => 'modal-remote'])
                 ];    
             }else{
@@ -236,7 +236,7 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
                     'content' => $this->renderAjax('update', [
                         'model' => $model,
                     ]),
-                    'footer' => Html::button('Close', ['class' => 'btn btn-default pull-left','data-dismiss' => "modal"]).
+                    'footer' => Html::button('Close', ['class' => 'btn btn-secondary pull-left','data-dismiss' => "modal"]).
                                 Html::button('Save', ['class' => 'btn btn-primary','type' => "submit"])
                 ];        
             }
@@ -333,7 +333,7 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
                     'model' => $model,
                 ]),
                 'footer' =>
-                    Html::button('Close', ['class' => 'btn btn-default pull-left','data-dismiss' => "modal"]).
+                    Html::button('Close', ['class' => 'btn btn-secondary pull-left','data-dismiss' => "modal"]).
                     Html::button('test', ['class' => 'btn btn-primary', 'type' => "submit"]),
                 ];
             }elseif($model->load($request->post()) && $model->validate()){
@@ -346,7 +346,7 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
                     'model' => $model,
                 ]),
                 'footer' =>
-                    Html::button('Close', ['class' => 'btn btn-default pull-left','data-dismiss' => "modal"]).
+                    Html::button('Close', ['class' => 'btn btn-secondary pull-left','data-dismiss' => "modal"]).
                     Html::button('test', ['class' => 'btn btn-primary', 'type' => "submit"]),
                 ];
             }

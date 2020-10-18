@@ -48,7 +48,7 @@ $(document).ready(function () {
             modal.show();
             modal.setTitle(yii.t('app', 'No selection'));
             modal.setContent(yii.t('app', 'You must select item(s) to use this action'));
-            modal.addFooterButton(yii.t('app', 'Close'), 'button', 'btn btn-default', function () {
+            modal.addFooterButton(yii.t('app', 'Close'), 'button', 'btn btn-secondary', function () {
                 this.hide();
             });
         } else {
