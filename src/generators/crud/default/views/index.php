@@ -34,12 +34,12 @@ use kartik\grid\EnumColumn;
 use kartik\grid\ActionColumn;
 use kartik\grid\FormulaColumn;
 use kartik\daterange\DateRangePicker;
-use wodrow\wajaxcrud\rangecolumn\RangeColumn;
+use overplex\wajaxcrud\rangecolumn\RangeColumn;
 use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\bootstrap4\Modal;
-use wodrow\wajaxcrud\CrudAsset;
-use wodrow\wajaxcrud\BulkButtonWidget;
+use overplex\wajaxcrud\CrudAsset;
+use overplex\wajaxcrud\BulkButtonWidget;
 use wodrow\yii2wtools\tools\JsBlock;
 use yii\web\JsExpression;
 

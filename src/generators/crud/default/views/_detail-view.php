@@ -3,7 +3,7 @@ use yii\helpers\Inflector;
 use yii\helpers\StringHelper;
 
 /* @var $this yii\web\View */
-/* @var $generator \wodrow\wajaxcrud\generators\crud\Generator */
+/* @var $generator \overplex\wajaxcrud\generators\crud\Generator */
 
 echo "<?php\n";
 ?>

@@ -8,7 +8,7 @@ use yii\db\ActiveRecordInterface;
 
 
 /* @var $this yii\web\View */
-/* @var $generator \wodrow\wajaxcrud\generators\crud\Generator */
+/* @var $generator \overplex\wajaxcrud\generators\crud\Generator */
 
 $controllerClass = StringHelper::basename($generator->controllerClass);
 $modelClass = StringHelper::basename($generator->modelClass);

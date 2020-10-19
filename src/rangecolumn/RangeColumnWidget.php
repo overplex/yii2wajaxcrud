@@ -8,7 +8,6 @@
 
 namespace overplex\wajaxcrud\rangecolumn;
 
-
 use kartik\base\Widget;
 
 class RangeColumnWidget extends Widget

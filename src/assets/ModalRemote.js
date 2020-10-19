@@ -13,20 +13,16 @@
 function ModalRemote(modalId) {
 
     this.defaults = {
-        okLabel: yii.t('app', 'OK'), cancelLabel: yii.t('app', 'Cancel'),
+        okLabel: yii.t('app', 'OK'),
+        cancelLabel: yii.t('app', 'Cancel'),
         loadingTitle: yii.t('app', 'Loading...'),
     };
 
     this.modal = $(modalId);
-
     this.dialog = $(modalId).find('.modal-dialog');
-
     this.header = $(modalId).find('.modal-header');
-
     this.content = $(modalId).find('.modal-body');
-
     this.footer = $(modalId).find('.modal-footer');
-
     this.loadingContent = '<div class="progress progress-striped active" style="margin-bottom:0;"><div class="progress-bar" style="width: 100%"></div></div>';
 
     /**
@@ -65,15 +61,44 @@ function ModalRemote(modalId) {
      * @param {string} size large/normal/small
      */
     this.setSize = function (size) {
-        $(this.dialog).removeClass('modal-lg');
-        $(this.dialog).removeClass('modal-sm');
-        if (size === 'large') {
-            $(this.dialog).addClass('modal-lg');
+        let $dialog = $(this.dialog);
+        $dialog.removeClass('modal-xl');
+        $dialog.removeClass('modal-lg');
+        $dialog.removeClass('modal-sm');
+
+        if (size === 'extra-large') {
+            $dialog.addClass('modal-xl');
+        } else if (size === 'large') {
+            $dialog.addClass('modal-lg');
         } else if (size === 'small') {
-            $(this.dialog).addClass('modal-sm');
+            $dialog.addClass('modal-sm');
         } else if (size !== 'normal') {
             console.warn('Undefined size ' + size);
         }
+    };
+
+    /**
+     * @returns {string} Size class name.
+     */
+    this.getSizeClassName = function () {
+        let $dialog = $(this.dialog);
+        if ($dialog.hasClass('modal-xl')) return 'modal-xl';
+        if ($dialog.hasClass('modal-lg')) return 'modal-lg';
+        if ($dialog.hasClass('modal-sm')) return 'modal-sm';
+        return '';
+    };
+
+    /**
+     * Set custom class of modal
+     * @param {string} customClass Class name.
+     */
+    this.setCustomClass = function (customClass) {
+        let sizeClassName = this.getSizeClassName();
+        let $dialog = $(this.dialog);
+        $dialog.removeClass();
+        $dialog.addClass('modal-dialog');
+        $dialog.addClass(sizeClassName);
+        $dialog.addClass(customClass);
     };
 
     /**
@@ -114,7 +139,7 @@ function ModalRemote(modalId) {
     /**
      * Hide close button
      */
-    this.hidenCloseButton = function () {
+    this.hideCloseButton = function () {
         $(this.header).find('button.close').hide();
     };
 
@@ -135,9 +160,10 @@ function ModalRemote(modalId) {
 
     /**
      * Add button to footer
-     * @param string label The label of button
-     * @param string classes The class of button
-     * @param callable callback the callback when button click
+     * @param label
+     * @param type
+     * @param classes
+     * @param callback
      */
     this.addFooterButton = function (label, type, classes, callback) {
         buttonElm = document.createElement('button');
@@ -158,9 +184,11 @@ function ModalRemote(modalId) {
      * Send ajax request and wraper response to modal
      * @param {string} url The url of request
      * @param {string} method The method of request
-     * @param {object}data of request
+     * @param {string|null} size The size of the modal
+     * @param {string|null} customClass Custom class for the modal
+     * @param {object} data of request
      */
-    this.doRemote = function (url, method, data) {
+    this.doRemote = function (url, method, size, customClass, data) {
         var instance = this;
         $.ajax({
             url: url, method: method, data: data, async: false,
@@ -169,7 +197,7 @@ function ModalRemote(modalId) {
             }, error: function (response) {
                 errorRemoteResponse.call(instance, response);
             }, success: function (response) {
-                successRemoteResponse.call(instance, response);
+                successRemoteResponse.call(instance, response, size, customClass);
             }, contentType: false, cache: false, processData: false,
         });
     };
@@ -200,8 +228,10 @@ function ModalRemote(modalId) {
     /**
      * When remote sends success response
      * @param {string} response
+     * @param {string|null} size
+     * @param {string|null} customClass
      */
-    function successRemoteResponse(response) {
+    function successRemoteResponse(response, size, customClass) {
 
         // Reload datatable if response contain forceReload field
         if (response.forceReload !== undefined && response.forceReload) {
@@ -221,6 +251,14 @@ function ModalRemote(modalId) {
 
         if (response.size !== undefined) {
             this.setSize(response.size);
+        } else if (size !== null) {
+            this.setSize(size);
+        }
+
+        if (response.customClass !== undefined) {
+            this.setCustomClass(response.customClass);
+        } else if (customClass !== null) {
+            this.setCustomClass(customClass);
         }
 
         if (response.title !== undefined) {
@@ -236,8 +274,7 @@ function ModalRemote(modalId) {
         }
 
         if ($(this.content).find('form')[0] !== undefined) {
-            this.setupFormSubmit($(this.content).find('form')[0],
-                $(this.footer).find('[type="submit"]')[0]);
+            this.setupFormSubmit($(this.content).find('form')[0], $(this.footer).find('[type="submit"]')[0]);
         }
     }
 
@@ -266,10 +303,13 @@ function ModalRemote(modalId) {
                     data = $(modalForm).serializeArray();
                 }
 
-                instance.doRemote($(modalForm).attr('action'),
-                    $(modalForm).hasAttr('method')
-                        ? $(modalForm).attr('method')
-                        : 'GET', data);
+                instance.doRemote(
+                    $(modalForm).attr('action'),
+                    $(modalForm).hasAttr('method') ? $(modalForm).attr('method') : 'GET',
+                    null,
+                    null,
+                    data
+                );
             });
         }
     };
@@ -281,14 +321,16 @@ function ModalRemote(modalId) {
      * @param {string} okLabel The label of ok button
      * @param {string} cancelLabel The class of cancel button
      * @param {string} size The size of the modal
+     * @param {string} customClass Custom class for the modal
      * @param {string} dataUrl Where to post
      * @param {string} dataRequestMethod POST or GET
      * @param {number[]} selectedIds
      */
     this.confirmModal = function (title, message, okLabel, cancelLabel, size,
-                                  dataUrl, dataRequestMethod, selectedIds) {
+                                  customClass, dataUrl, dataRequestMethod, selectedIds) {
         this.show();
         this.setSize(size);
+        this.setCustomClass(customClass);
 
         if (title !== undefined) {
             this.setTitle(title);
@@ -300,7 +342,7 @@ function ModalRemote(modalId) {
         if (okLabel !== false) {
             this.addFooterButton(
                 okLabel === undefined ? this.defaults.okLabel : okLabel,
-                'submit', 'btn btn-primary', function (e) {
+                'submit', 'btn btn-primary', function () {
                     var data;
 
                     // Test if browser supports FormData which handles uploads
@@ -318,16 +360,15 @@ function ModalRemote(modalId) {
                         data = data.serializeArray();
                     }
 
-                    instance.doRemote(dataUrl, dataRequestMethod, data);
+                    instance.doRemote(dataUrl, dataRequestMethod, null, null, data);
                 });
         }
 
         this.addFooterButton(
             cancelLabel === undefined ? this.defaults.cancelLabel : cancelLabel,
-            'button', 'btn btn-secondary pull-left', function (e) {
+            'button', 'btn btn-secondary pull-left', function () {
                 this.hide();
             });
-
     };
 
     /**
@@ -353,17 +394,29 @@ function ModalRemote(modalId) {
         /**
          * Show either a local confirm modal or get modal content through ajax
          */
-        if ($(elm).hasAttr('data-confirm-title') ||
-            $(elm).hasAttr('data-confirm-message')) {
-            this.confirmModal($(elm).attr('data-confirm-title'),
+        if ($(elm).hasAttr('data-confirm-title') || $(elm).hasAttr('data-confirm-message')) {
+
+            this.confirmModal(
+                $(elm).attr('data-confirm-title'),
                 $(elm).attr('data-confirm-message'),
-                $(elm).attr('data-confirm-alert') ? false : $(elm).attr('data-confirm-ok'), $(elm).attr('data-confirm-cancel'),
+                $(elm).attr('data-confirm-alert') ? false : $(elm).attr('data-confirm-ok'),
+                $(elm).attr('data-confirm-cancel'),
                 $(elm).hasAttr('data-modal-size') ? $(elm).attr('data-modal-size') : 'normal',
+                $(elm).hasAttr('data-modal-class') ? $(elm).attr('data-modal-class') : '',
                 $(elm).hasAttr('href') ? $(elm).attr('href') : $(elm).attr('data-url'),
-                $(elm).hasAttr('data-request-method') ? $(elm).attr('data-request-method') : 'GET', bulkData);
+                $(elm).hasAttr('data-request-method') ? $(elm).attr('data-request-method') : 'GET',
+                bulkData
+            );
+
         } else {
-            this.doRemote($(elm).hasAttr('href') ? $(elm).attr('href') : $(elm).attr('data-url'),
-                $(elm).hasAttr('data-request-method') ? $(elm).attr('data-request-method') : 'GET', bulkData);
+
+            this.doRemote(
+                $(elm).hasAttr('href') ? $(elm).attr('href') : $(elm).attr('data-url'),
+                $(elm).hasAttr('data-request-method') ? $(elm).attr('data-request-method') : 'GET',
+                $(elm).hasAttr('data-modal-size') ? $(elm).attr('data-modal-size') : 'normal',
+                $(elm).hasAttr('data-modal-class') ? $(elm).attr('data-modal-class') : '',
+                bulkData
+            );
         }
     };
 } // End of Object

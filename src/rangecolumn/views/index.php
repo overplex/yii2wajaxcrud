@@ -1,11 +1,14 @@
 <?php
-/**
- * @var \yii\web\View $this
- * @var \wodrow\wajaxcrud\rangecolumn\RangeColumnWidget $widget
- */
 
+use overplex\wajaxcrud\rangecolumn\RangeColumnWidget;
 use wodrow\yii2wtools\tools\JsBlock;
 use yii\helpers\Html;
+use yii\web\View;
+
+/**
+ * @var View $this
+ * @var RangeColumnWidget $widget
+ */
 
 $wid = "RangeColumn{$widget->id}";
 

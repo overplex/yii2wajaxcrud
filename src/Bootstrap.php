@@ -22,7 +22,7 @@ class Bootstrap implements BootstrapInterface {
         Yii::setAlias("@overplex/wajaxcrud", __DIR__);
         /*if ($app->hasModule('gii')) {
             if (!isset($app->getModule('gii')->generators['ajaxcrud'])) {
-                $app->getModule('gii')->generators['ajaxcrud'] = 'wodrow\wajaxcrud\generators\Generator';
+                $app->getModule('gii')->generators['ajaxcrud'] = 'overplex\wajaxcrud\generators\Generator';
             }
         }*/
     }
