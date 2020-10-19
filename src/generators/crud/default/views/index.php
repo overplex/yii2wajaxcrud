@@ -50,6 +50,9 @@ use yii\web\JsExpression;
 $this->title = <?= $generator->generateString(Inflector::pluralize(Inflector::camel2words(StringHelper::basename($generator->formModelClass)))) ?>;
 $this->params['breadcrumbs'][] = $this->title;
 
+$this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.js');
+$this->registerCssFile('https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.css');
+
 CrudAsset::register($this);
 
 ?>
@@ -226,7 +229,7 @@ CrudAsset::register($this);
             ],
             'panel' => [
                 'type' => "primary", 
-                'heading' => "<i class=\"glyphicon glyphicon-list\"></i> <?= Inflector::pluralize(Inflector::camel2words(StringHelper::basename($generator->modelClass))) ?> List",
+                'heading' => '<i class="glyphicon glyphicon-list"></i> <?= Inflector::pluralize(Inflector::camel2words(StringHelper::basename($generator->modelClass))) ?> List',
                 'before' => "<em>* You can drag to change the width of a single column; enter the filter box<code>"
                     . \Yii::t('yii', '(not set)'). "</code>Only data with empty values will be searched; input in the filter box<code>"
                 . $searchModel::EMPTY_STRING . "</code>Will only search for data whose value is a null character; input in the filter box<code>"
@@ -262,18 +265,13 @@ CrudAsset::register($this);
 ]); ?>'."\n"?>
 <?='<?php Modal::end(); ?>'?>
 
-
 <?='<?php JsBlock::begin(); ?>' ?>
-
 <?='<script>' ?>
-
 <?='$(function () {
     baguetteBox.run(".gvRowBaguetteBox", {
         animation: "fadeIn"
     });
 })' ?>
-
 <?='</script>' ?>
-
 <?='<?php JsBlock::end(); ?>' ?>
 

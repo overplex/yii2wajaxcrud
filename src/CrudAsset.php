@@ -12,19 +12,17 @@ class CrudAsset extends AssetBundle
 {
     public $sourcePath = '@wajaxcrud/assets';
 
-//    public $publishOptions = [
-//        'forceCopy' => true,
-//    ];
+    //public $publishOptions = [
+    //    'forceCopy' => true,
+    //];
 
     public $css = [
-        'ajaxcrud.css',
-        'baguetteBox.min.css',
+        'ajaxcrud.css'
     ];
 
     public $js = [
         YII_ENV_DEV ? 'ModalRemote.js' : 'ModalRemote.min.js',
-        YII_ENV_DEV ? 'ajaxcrud.js' : 'ajaxcrud.min.js',
-        'baguetteBox.min.js',
+        YII_ENV_DEV ? 'ajaxcrud.js' : 'ajaxcrud.min.js'
     ];
 
     public $depends = [
