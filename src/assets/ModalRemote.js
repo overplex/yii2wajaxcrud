@@ -54,6 +54,7 @@ function ModalRemote(modalId) {
         $(this.modal).find('.modal-title').remove();
         $(this.content).html('');
         $(this.footer).html('');
+        this.setCustomClass('');
     };
 
     /**
@@ -166,7 +167,7 @@ function ModalRemote(modalId) {
      * @param callback
      */
     this.addFooterButton = function (label, type, classes, callback) {
-        buttonElm = document.createElement('button');
+        let buttonElm = document.createElement('button');
         buttonElm.setAttribute('type', type === null ? 'button' : type);
         buttonElm.setAttribute('class',
             classes === null ? 'btn btn-primary' : classes);
